@@ -14,34 +14,35 @@ public class FindMaximumSubarray {
         if (high == low) {
             int[] summArr = {low, high, arr[low]};
             return sumArr;
-        }
-        else {
+        } else {
             int mid = (low + high) / 2;
             int[] leftSumArr = findMaximumSubarray(arr, low, mid);
             int[] rightSumArr = findMaximumSubarray(arr, mid + 1, high);
             int[] crossSumArr = findMaxCrossingSubarray(arr, low, mid, high);
             if (leftSumArr[2] >= rightSumArr[2] && leftSumArr[2] >= crossSumArr[2]) {
-                return leftSumArr;
+                int[] solutionArr = {leftSumArr[0], leftSumArr[1], leftSumArr[2]};
+                return solutionArr;
             } else if (rightSumArr[2] >= leftSumArr[2] && rightSumArr[2] >= crossSumArr[2]) {
-                return rightSumArr;
+                int[] solutionArr = {rightSumArr[0], rightSumArr[1], rightSumArr[2]};
+                return solutionArr;
             } else {
-                return crossSumArr;
+                int[] solutionArr = {crossSumArr[0], crossSumArr[1], crossSumArr[2]};
+                return solutionArr;
             }
         }
     }
     
     public static int[] findMaxCrossingSubarray(int[] arr, int low, int mid, int high) {
-        int leftSum = -9999, sum = 0, maxLeft = -1;
-        for (int i = low; i < mid; i++) {
-            sum = sum + arr[i];
+        int leftSum = Integer.MIN_VALUE, rightSum = Integer.MIN_VALUE, sum = 0, maxLeft = mid, maxRight = mid + 1;
+        for (int i = mid; i >= low; i--) {
+            sum += arr[i];
             if (sum > leftSum) {
                 leftSum = sum;
                 maxLeft = i;
             }
         }
-        int rightSum = -9999, maxRight = -1;
         sum = 0;
-        for (int j = mid + 1; j < high; j++) {
+        for (int j = mid + 1; j <= high; j++) {
             sum += arr[j];
             if (sum > rightSum) {
                 rightSum = sum;
