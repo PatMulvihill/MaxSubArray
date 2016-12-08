@@ -19,13 +19,10 @@ public class FindMaximumSubarray {
             int[] rightSumArr = findMaximumSubarray(arr, mid + 1, high);
             int[] crossSumArr = findMaxCrossingSubarray(arr, low, mid, high);
             if (leftSumArr[2] >= rightSumArr[2] && leftSumArr[2] >= crossSumArr[2]) {
-                //int[] solutionArr = {leftSumArr[0], leftSumArr[1], leftSumArr[2]};
                 return leftSumArr;
             } else if (rightSumArr[2] >= leftSumArr[2] && rightSumArr[2] >= crossSumArr[2]) {
-//                int[] solutionArr = {rightSumArr[0], rightSumArr[1], rightSumArr[2]};
                 return rightSumArr;
             } else {
-//                int[] solutionArr = {crossSumArr[0], crossSumArr[1], crossSumArr[2]};
                 return crossSumArr;
             }
         }
@@ -51,54 +48,6 @@ public class FindMaximumSubarray {
         int[] crossSumArr = {maxLeft, maxRight, (leftSum + rightSum)};
         return crossSumArr;
     }
-
-//    public static int[] findMaximumSubarray (int[] arr, int low, int high) {
-//        if (high == low) {
-//            int[] solution = {low, high, arr[low]};
-//            return solution;
-//        } else {
-//            int mid = (low + high) / 2;
-//            int[] left = findMaximumSubarray(arr, low, mid);
-//            int[] right = findMaximumSubarray(arr, mid + 1, high);
-//            int[] cross = findMaxCrossingSubarray(arr, low, mid, high);
-//            
-//            if (left[2] >= right[2] && left[2] >= cross[2]) {
-//                int[] solution = {left[0], left[1], left[2]};
-//                return solution;
-//            } else if (right[2] >= left[2] && right[2] >= cross[2]) {
-//                int[] solution = {right[0], right[1], right[2]};
-//                return solution;
-//            } else {
-//                int[] solution = {cross[0], cross[1], cross[2]};
-//                return solution;
-//            }
-//        }
-//    }
-//    
-//    public static int[] findMaxCrossingSubarray (int[] arr, int low, int mid, int high) {
-//        int sum = 0;
-//        int leftSum, rightSum;
-//        int maxLeft = mid;
-//        int maxRight = mid + 1;
-//        leftSum = rightSum = Integer.MIN_VALUE;
-//        
-//        for (int leftIndex = mid; leftIndex >= low; leftIndex--) {
-//            sum += arr[leftIndex];
-//            if (sum > leftSum) {
-//                leftSum = sum;
-//                maxLeft = leftIndex;
-//            }
-//        }
-//        for (int rightIndex = mid + 1; rightIndex <= high; rightIndex++) {
-//            sum += arr[rightIndex];
-//            if (sum > rightSum) {
-//                rightSum = sum;
-//                maxRight = rightIndex;
-//            }
-//        }
-//        int[] solution = {maxLeft, maxRight, (leftSum + rightSum)};
-//        return solution;
-//    }
     
     public static void main(String[] args) {
         int[] dataArr1 = {15, 12, 19, 3, 9, 17, 11, 18, 5, 16,
